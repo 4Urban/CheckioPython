@@ -33,8 +33,10 @@ MORSE = {'.-':    'a', '-...':  'b', '-.-.':  'c',
 
 def morse_decoder(code):
     #replace this for solution
-    return code
-
+    codeArray = [x.split(' ') for x in code.split('   ')]
+    return ' '.join([''.join([value for y in x for key, value in MORSE.items() if y == key]) for x in codeArray]).capitalize()
+    
+ 
 if __name__ == '__main__':
     print("Example:")
     print(morse_decoder('... --- ...'))

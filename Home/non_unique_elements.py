@@ -33,7 +33,7 @@ def checkio(data: list) -> list:
     #It's used for auto-testing and must return a result for check.  
 
     #replace this for solution
-    return data
+    return [x for x in data if data.count(x) != 1]
 
 #Some hints
 #You can use list.count(element) method for counting.

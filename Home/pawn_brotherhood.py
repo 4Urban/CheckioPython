@@ -4,7 +4,14 @@
 # END_DESC
 
 def safe_pawns(pawns: set) -> int:
-    return 0
+    n = 0
+    for x in pawns:
+        listX = list(x)
+        candid1 = chr(ord(listX[0])+1) + str(int(listX[1])-1)
+        candid2 = chr(ord(listX[0])-1) + str(int(listX[1])-1)
+        if candid1 in pawns or candid2 in pawns:
+            n += 1
+    return n
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing

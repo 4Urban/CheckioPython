@@ -18,16 +18,34 @@
 
 
 
+def end_zeros2(num: int) -> int:
+    # your code here
+    # str_num = str(num)
+    # n = 0
+    # if num == 0:
+    #     return 1
+    # while num % 10 == 0:
+    #     n = n + 1
+    #     num = num / 10
+    
+    n = 0
+    for x in reversed(str(num)):
+        if x == '0': n += 1
+        else: return n
+    
+    
+    return n
+    
 def end_zeros(num: int) -> int:
     # your code here
-    str_num = str(num)
-    n = 0
-    if num == 0:
-        return 1
-    while num % 10 == 0:
-        n = n + 1
-        num = num / 10
-    return n
+    key = str(num)
+    x=key[::-1]
+    ans=0
+    for n in range(len(x)):
+        if x[n]=='0':
+            ans+=1
+        else:
+            return ans
 
 if __name__ == "__main__":
     print("Example:")

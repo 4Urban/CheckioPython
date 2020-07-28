@@ -25,7 +25,8 @@ def left_join(phrases: tuple) -> str:
     """
         Join strings and replace "right" to "left"
     """
-    return "left"
+    #list = [x.replace("left", "right") for x in phrases]
+    return ','.join(phrases).replace("right", "left")
 
 if __name__ == '__main__':
     print('Example:')
