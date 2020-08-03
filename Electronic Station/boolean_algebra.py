@@ -36,7 +36,9 @@
 OPERATION_NAMES = ("conjunction", "disjunction", "implication", "exclusive", "equivalence")
 
 def boolean(x, y, operation):
-    return 1 or 0
+    tupleOperation = (lambda x, y: x and y, lambda x, y: x or y, lambda x, y: not x or y, lambda x, y: (x or y) and not (x and y), lambda x, y: x == y)
+    idx = OPERATION_NAMES.index(operation)
+    return tupleOperation[idx](x, y)
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
