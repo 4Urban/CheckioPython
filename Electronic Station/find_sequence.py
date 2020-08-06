@@ -34,10 +34,22 @@
 # END_DESC
 
 from typing import List
+import numpy as np
 
 def checkio(matrix: List[List[int]]) -> bool:
     #replace this for solution
-    return True or False
+    N = len(matrix[0])
+    return any([checkDuplicate(i, j, np.array(matrix)) for i in range(N) for j in range(N)])
+
+def checkDuplicate(i, j, matrix):
+    elem = [matrix[i][j]] * 4
+    print(elem)
+    if np.array_equal(elem, matrix[i, j:j+4]): return True #horizon
+    if np.array_equal(elem, matrix[i:i+4, j]): return True #vertical
+    if np.array_equal(elem, matrix[i:i+4, j:j+4].diagonal()): return True #diagonal
+    print(np.fliplr(matrix[i:i+4, j-4:j]).diagonal())
+    if np.array_equal(elem, np.fliplr(matrix[i:i+4, j-3:j+1]).diagonal()): return True #reverse_diagonal
+    return False
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
