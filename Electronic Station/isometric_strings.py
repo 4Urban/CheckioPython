@@ -13,7 +13,19 @@
 
 def isometric_strings(str1: str, str2: str) -> bool:
     # your code here
-    return None
+    size = len(str1)
+    used = []
+    str3 = [''] * size
+    for i in range(size):
+        if not str1[i] in used:
+            for j in range(size):
+                if str2[j] == str2[i]:
+                    str3[j] = str1[i]
+                    used.append(str1[i])
+    print(''.join(str3))
+    if str1 == ''.join(str3):
+        return True
+    return False
 
 
 if __name__ == '__main__':
