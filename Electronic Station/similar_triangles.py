@@ -9,13 +9,40 @@
 # END_DESC
 
 from typing import List, Tuple
+import numpy as np
 Coords = List[Tuple[int, int]]
 
 
 def similar_triangles(coords_1: Coords, coords_2: Coords) -> bool:
 
     # your code here
-    return False
+    # print(lengths(coords_1))
+    # print(lengths(coords_2))
+    # print(normalized_lengths(coords_1))
+    # print(normalized_lengths(coords_2))
+    return np.array_equal(normalized_lengths(coords_1), normalized_lengths(coords_2))
+    
+def normalized_lengths(coords):
+    return lengths(coords) / np.linalg.norm(lengths(coords))
+
+def lengths(coords):
+    size = len(coords)
+    return sorted([length(coords[(i+1) % size], coords[i]) for i in range(size)])
+
+def length(elem1, elem2):
+    return ((elem2[0]-elem1[0])**2+(elem2[1]-elem1[1])**2)**(1/2)
+
+#     print(vector(coords_1))
+#     print(vector(coords_2))
+#     return np.array_equal(vector(coords_1), vector(coords_2))
+
+# def vector(coords):
+#     size = len(coords)
+#     coords = list(map(np.array, coords))
+#     return np.sort([normalize(np.abs(coords[(i+1) % size] - coords[i])) for i in range(size)], axis=0)
+
+# def normalize(self):
+#     return self / np.linalg.norm(self)
 
 
 if __name__ == '__main__':
@@ -29,4 +56,5 @@ if __name__ == '__main__':
     assert similar_triangles([(0, 0), (0, 3), (2, 0)], [(3, 0), (5, 3), (5, 0)]) is True, 'reflection'
     assert similar_triangles([(1, 0), (1, 2), (2, 0)], [(3, 0), (5, 4), (5, 0)]) is True, 'scaling and reflection'
     assert similar_triangles([(1, 0), (1, 3), (2, 0)], [(3, 0), (5, 5), (5, 0)]) is False, 'different #2'
+    assert similar_triangles([[1,3],[2,5],[3,3]],[[3,0],[3,2],[5,1]]) is True, 'WRONG'
     print("Coding complete? Click 'Check' to earn cool rewards!")
