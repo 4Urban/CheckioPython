@@ -12,9 +12,16 @@
 # END_DESC
 
 from typing import Iterable
+# def is_ascending(items: Iterable[int]) -> bool:
+#     # your code here
+#     for idx in range(len(items)-1):
+#         if not items[idx+1] > items[idx]:
+#             return False
+#     return True
+
 def is_ascending(items: Iterable[int]) -> bool:
     # your code here
-    return True
+    return items == sorted(list(set(items)))
 
 
 if __name__ == '__main__':
