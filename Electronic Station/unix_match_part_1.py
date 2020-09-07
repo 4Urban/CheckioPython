@@ -16,11 +16,17 @@
 # 
 # END_DESC
 
+import re
+
 def unix_match(filename: str, pattern: str) -> bool:
-
-    # your code here
-    return filename == pattern
-
+    pattern = re.sub("\.", "\.", pattern)
+    pattern = re.sub("\*", ".*", pattern)
+    pattern = re.sub("\?", ".{1}", pattern)
+    match = re.search(pattern, filename)
+    try:
+        return filename == match.group()
+    except:
+        return False
 
 if __name__ == '__main__':
     print("Example:")
