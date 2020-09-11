@@ -14,10 +14,14 @@
 # def is_all_upper(text: str) -> bool:
 #     return not(text == text.lower()) and text.strip() != ""
 
+# import re
+# def is_all_upper(text: str) -> bool:
+#     regex = '[A-Z]+([A-Z]|\s){{{}}}'.format(len(text)-1)
+#     return bool(re.match(regex, text))
+
 import re
 def is_all_upper(text: str) -> bool:
-    regex = '[A-Z]+([A-Z]|\s){{{}}}'.format(len(text)-1)
-    return bool(re.match(regex, text))
+    return bool(re.search('[A-Z]', text)) and not(bool(re.search('[a-z]', text)))
 
 if __name__ == '__main__':
     print("Example:")
@@ -29,4 +33,5 @@ if __name__ == '__main__':
     assert is_all_upper('mixed UPPER and lower') == False
     assert is_all_upper('') == False
     assert is_all_upper("Hi") == False
+    assert is_all_upper("DIGITS123") == True
     print("Coding complete? Click 'Check' to earn cool rewards!")
