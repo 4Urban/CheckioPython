@@ -37,8 +37,7 @@ if __name__ == '__main__':
     print("Coding complete? Click 'Check' to earn cool rewards!")
 
 def is_acceptable_password(password: str) -> bool:
-    # your code here
-    return False
+    return len(password) > 6 and not password.isnumeric() and not password.isalpha() and password.isalnum()
 
 
 if __name__ == '__main__':
